@@ -246,9 +246,11 @@ ${DOMAIN:+domain=$DOMAIN}
 EOF
     if [ "${ELASTICSEARCH_HOSTS}" != "" ]; then
         echo "elasticsearch_hosts=$ELASTICSEARCH_HOSTS" >"${BOOTSTRAP_TMPDIR}/filebeat.conf"
+        echo "elasticsearch_hosts=$ELASTICSEARCH_HOSTS" >"${BOOTSTRAP_TMPDIR}/vector.conf"
     fi
     if [ "${ELASTICSEARCH_TAGS}" != "" ]; then
         echo "elasticsearch_tags=$ELASTICSEARCH_TAGS" >>"${BOOTSTRAP_TMPDIR}/filebeat.conf"
+        echo "elasticsearch_tags=$ELASTICSEARCH_TAGS" >>"${BOOTSTRAP_TMPDIR}/vector.conf"
     fi
     if [ "${NNS_PUBLIC_KEY}" != "" ]; then
         cp "${NNS_PUBLIC_KEY}" "${BOOTSTRAP_TMPDIR}/nns_public_key.pem"

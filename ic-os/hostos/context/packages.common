@@ -16,6 +16,7 @@ systemd-journal-remote
 # Third-party services we will be running
 chrony
 openssh-server
+vector
 
 # Smartcard support
 pcscd
@@ -59,7 +60,7 @@ ethtool
 ipmitool
 libarchive-zip-perl
 libusb-1.0-0
-libvirt-daemon-system 
+libvirt-daemon-system
 libvirt-dev
 locales
 moreutils

@@ -43,6 +43,9 @@ RUN cd /tmp/ && \
     echo "68f3802c2dd3980667e4ba65ea2e1fb03f4a4ba026cca375f15a0390ff850949  node_exporter-1.3.1.linux-amd64.tar.gz" > node_exporter.sha256 && \
     shasum -c node_exporter.sha256
 
+# Download vector repo installer
+RUN cd /tmp/ && \
+    curl -L https://setup.vector.dev -o install_vector_repo.sh
 
 #
 # Second build stage:
@@ -97,6 +100,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # be set via docker build args (see above).
 ARG PACKAGE_FILES=packages.common
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# Install vector repository
+COPY --from=download /tmp/install_vector_repo.sh /tmp/install_vector_repo.sh
+RUN cd /tmp/ && \
+    bash -c /tmp/install_vector_repo.sh && \
+    rm /tmp/install_vector_repo.sh
 COPY packages.* /tmp/
 RUN apt-get -y update && \
     apt-get -y upgrade && \

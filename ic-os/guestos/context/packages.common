@@ -16,6 +16,7 @@ systemd-journal-remote
 # Third-party services we will be running
 chrony
 openssh-server
+vector
 
 # Runtime libraries for replica
 liblmdb0
@@ -63,4 +64,3 @@ policycoreutils
 # this package can be removed
 selinux-policy-dev
 checkpolicy
-

@@ -1,0 +1,30 @@
+sources:
+  guestos_node_exporter:
+    type: prometheus_scrape
+    endpoints:
+      - https://[::]:42372/metrics/guestos_node_exporter
+  guestos_replica:
+    type: prometheus_scrape
+    endpoints:
+      - https://[::]:42372/metrics/guestos_replica
+  metrics_proxy:
+    type: prometheus_scrape
+    endpoints:
+      - https://[::]:19100/metrics
+  logs:
+    type: journald
+sinks:
+  host_os_remote_write:
+    type: prometheus_remote_write
+    inputs:
+      - guestos_node_exporter
+      - guestos_replica
+      - metrics_proxy
+    endpoint: https://hostos:42373/api/v1/write
+  elasticsearch:
+    type: elasticsearch
+    inputs:
+      - logs
+    bulk:
+      index: "ic-logs-%{+yyyy.MM.dd}"
+    endpoints: [{{ elasticsearch_hosts }}]

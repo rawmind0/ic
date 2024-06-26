@@ -1,0 +1,20 @@
+sources:
+  hostos_node_exporter:
+    type: prometheus_scrape
+    endpoints:
+      - https://[::]:42372/metrics/hostos_node_exporter
+  metrics_proxy:
+    type: prometheus_scrape
+    endpoints:
+      - https://[::]:19100/metrics
+  guestos_remote_write:
+    type: prometheus_remote_write
+    address: :42373
+sinks:
+  dfinity:
+    type: prometheus_remote_write
+    inputs:
+      - hostos_node_exporter
+      - metrics_proxy
+      - guestos_remote_write
+    endpoint: https://VMCLUSTER:8087/api/v1/write
