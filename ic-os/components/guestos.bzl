@@ -80,8 +80,8 @@ component_files = {
     Label("monitoring/node_exporter/setup-node_exporter-keys/setup-node_exporter-keys.service"): "/etc/systemd/system/setup-node_exporter-keys.service",
     Label("monitoring/metrics-proxy/guestos/metrics-proxy.yaml"): "/etc/metrics-proxy.yaml",
     Label("monitoring/metrics-proxy/metrics-proxy.service"): "/etc/systemd/system/metrics-proxy.service",
-    Label("monitoring/vector/generate-vector-config.sh"): "/opt/ic/bin/generate-vector-config.sh",
-    Label("monitoring/vector/vector.yaml.template"): "/etc/vector/vector.yaml.template",
+    Label("monitoring/vector/guestos/generate-vector-config.sh"): "/opt/ic/bin/generate-vector-config.sh",
+    Label("monitoring/vector/guestos/vector.yaml.template"): "/etc/vector/vector.yaml.template",
 
     # networking
     Label("networking/generate-network-config/guestos/generate-network-config.service"): "/etc/systemd/system/generate-network-config.service",
